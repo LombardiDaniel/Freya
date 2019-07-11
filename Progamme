@@ -12,11 +12,12 @@
 
 /*Pins*/
 #define pin_temp = 2;
-#define pin_moist; //(analog)
-#define pin_light_sensor; //(analog)
-#define pin_hose; //(digital)
+#define pin_moist; //analog
+#define pin_light_sensor; //analog
+#define pin_hose; //digital
 #define pinCS; //analog
 #define pin_reset; //analog
+#define pin_relay; //digital
 
 /*Variables*/
 const int stepsPerRevolution = 64;
@@ -73,20 +74,23 @@ void loop() {
 
   }
 
-  //AQUI if !door_open() {...}
   //a porta só se movimenta quando troca a hora
   if (t.min == 0) {
     if (temp() <= min_temp) {
       hatch_close();
-    }
-    if (hatch_state == FALSE && X >= 6 && X <= 18) {
-      light_start();
     } else {
-      light_stop();
+      hatch_open();
     }
   }
 
-  if ((t.min)%10 != 0) { //um log a cada 10 min
+  if (hatch_state == FALSE) {
+    luz();
+  } else {
+    luz_cut();
+  }
+
+  // Um log a cada 10 minutos
+  if ((t.min)%10 != 0) {
     log_data();
   }
 
@@ -142,11 +146,28 @@ void water_stop() {
 
 }
 
-void light_start() {
+void luz() {
+
+  t = rtc.getTime();
+
+  X = t.hour + (t.min)*1/60;
+
+  f = 255.5*sin((X-6)*3.1416/12);
+
+  digitalWrite(pin_relay,HIGH);
+
+  if (f <= 0) {
+    f = 0;
+    digitalWrite(pin_relay,HIGH);
+  }
+
+  analogWrite(pin_led,f);
 
 }
 
-void light_stop() {
+void luz_cut() {
+
+  digitalWrite(pin_relay,HIGH)
 
 }
 
@@ -183,8 +204,9 @@ void new_day() {
 
 void hatch_open() {
 
+  hatch_state = TRUE;
 }
 
 void hatch_close() {
-
+  hatch_state = FALSE;
 }
