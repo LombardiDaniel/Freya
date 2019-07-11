@@ -11,6 +11,7 @@
 #define pin_light_sensor; //(analog)
 #define pin_hose; //(digital)
 #define pinCS; //analog
+#define pin_reset; //analog
 
 /*Variables*/
 const int stepsPerRevolution = 64;
@@ -35,21 +36,13 @@ void setup() {
   pinMode(pin_light_sensor, INPUT);
   pinMode(pin_hose, OUTPUT);
   pinMode(pinCS, OUTPUT);
+  pinMode(pin_reset, OUTPUT_PULLUP)
 
   SD.begin();
   rtc.begin();
   term.begin();
 
-  t = rtc.getTime();
-
-  if (SD.begin()) {
-    myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
-    if (myFile) {
-      myFile.println("");
-      myFile.println("TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE");
-      myFile.close();
-    }
-  }
+  new_day();
 
 }
 
@@ -57,6 +50,10 @@ void loop() {
 
   t = rtc.getTime();
   X = t.hour + (t.min)*100/60;
+
+  if (X == 0.0) {
+    new_day();
+  }
 
   if (X == 6.0 && moist <= min_moist) { //por 10 min só (?) ou depende da mosit
 
@@ -131,5 +128,20 @@ void water_stop() {
 void log_data() {
 
   t = rtc.getTime
+
+}
+
+void new_day() {
+
+  t = rtc.getTime();
+
+  if (SD.begin()) {
+    myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
+    if (myFile) {
+      myFile.println("");
+      myFile.println("TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE");
+      myFile.close();
+    }
+  }
 
 }
