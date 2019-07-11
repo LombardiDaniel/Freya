@@ -65,7 +65,7 @@ void loop() {
   //ve se precisa regar
   if (X == 6.0 && moist <= min_moist) { //por 10 min só (?) ou depende da mosit
 
-    water();
+    water_start();
 
   } else if (x >= 6.17 || moist > max_moist) {
 
@@ -86,7 +86,7 @@ void loop() {
     }
   }
 
-  if ((t.min)%10 != 0) {
+  if ((t.min)%10 != 0) { //um log a cada 10 min
     log_data();
   }
 
@@ -130,7 +130,7 @@ long lux() {
   return luz;
 }
 
-void water() {
+void water_start() {
 
   digitalWrite(pin_hose, HIGH);
 
@@ -147,7 +147,7 @@ void light_start() {
 }
 
 void light_stop() {
-  
+
 }
 
 void log_data() {
