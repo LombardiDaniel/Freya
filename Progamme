@@ -128,6 +128,16 @@ void water_stop() {
 void log_data() {
 
   t = rtc.getTime
+  if (SD.begin()) {
+    myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
+    if (myFile) {
+      myFile.print(X);
+      myFile.print(lux());
+      myFile.print(temp());
+      myFile.print(moist());
+      myFile.close();
+    }
+  }
 
 }
 
