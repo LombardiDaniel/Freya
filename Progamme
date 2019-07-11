@@ -22,6 +22,7 @@
 const int stepsPerRevolution = 64;
 int X;
 int min_moist; // valor de 0-100 (%)
+int max_moint; //valor para medir qnd tenq parar
 
 /*Objects*/
 File myFile;
@@ -64,13 +65,13 @@ void loop() {
 
     water();
 
-  } else if (x == 6.17) {
+  } else if (x >= 6.17 || moist > max_moist) {
 
     water_stop();
 
   }
 
-  //AQUI
+  //AQUI if !door_open() {...}
 
   minuto = t.min;
   if ((t.min)%10 != 0) {
