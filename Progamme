@@ -1,3 +1,8 @@
+/*
+  Parou na 69, falta fazer o código que vê se ta frio dmais
+  e se estiver, cobre e liga luz, se for horario de dia
+*/
+
 #include <DallasTemperature.h>
 #include <OneWire.h>
 #include <DS3231.h>
@@ -15,7 +20,6 @@
 
 /*Variables*/
 const int stepsPerRevolution = 64;
-int minuto, minuto_ant;
 int X;
 int min_moist; // valor de 0-100 (%)
 
@@ -55,6 +59,7 @@ void loop() {
     new_day();
   }
 
+  //ve se precisa regar
   if (X == 6.0 && moist <= min_moist) { //por 10 min só (?) ou depende da mosit
 
     water();
@@ -65,11 +70,10 @@ void loop() {
 
   }
 
-  //stopped here
+  //AQUI
 
   minuto = t.min;
-  if (minuto != minuto_ant) {
-    minuto_ant = minuto;
+  if ((t.min)%10 != 0) {
     log_data();
   }
 
