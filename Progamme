@@ -1,0 +1,72 @@
+#include <DallasTemperature.h>
+#include <OneWire.h>
+#include <DS3231.h>
+#include <Stepper.h>
+
+/*Pins*/
+const int pin_temp = 2;
+const int pin_humi; //(analog)
+const int pin_light_sensor; //(analog)
+
+/*Variables*/
+const int stepsPerRevolution = 64;
+
+/*Objects*/
+OneWire oneWire(pin_temp);
+DallasTemperature term(&oneWire);
+Stepper myStepper(stepsPerRevolution, 8,10,9,11); //pinos do stepper
+Time t;
+DS3231 rtc(SDA, SCL);
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(pin_humi, INPUT);
+  pinMode(pin_light_sensor, INPUT);
+
+  rtc.begin();
+  term.begin();
+
+}
+
+void loop() {
+
+
+
+}
+
+float humi() {
+
+  float humity;
+
+  for (int i = 0; i < 100; i++) {
+    humity += analogRead(pin_humi);
+    delay(1);
+  }
+
+  humity = (- (humity)/6.71 + 100)/50;
+
+  if (humity > 100) {
+    humity = 100;
+  } else if (humi < 0) {
+    humity = 0;
+  }
+
+  return humity;
+
+}
+
+float temp() {
+  term.requestTemperatures();
+  temp = term.getTempCByIndex(0);
+  retrun temp;
+}
+
+long lux() {
+  long luz;
+
+  luz = analogRead(pin_light_sensor);
+
+  return luz;
+}
