@@ -2,7 +2,6 @@
   Parou na 69, falta fazer o código que vê se ta frio dmais
   e se estiver, cobre e liga luz, se for horario de dia
 */
-
 #include <DallasTemperature.h>
 #include <OneWire.h>
 #include <DS3231.h>
@@ -36,8 +35,6 @@ Time t;
 DS3231 rtc(SDA, SCL);
 
 void setup() {
-
-  Serial.begin(9600);
 
   pinMode(pin_temp, INPUT);
   pinMode(pin_moist, INPUT);
@@ -83,7 +80,7 @@ void loop() {
     }
   }
 
-  if (hatch_state == FALSE) {
+  if (hatch_state == FALSE) { //FALSE = Fechado
     luz();
   } else {
     luz_cut();
