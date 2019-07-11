@@ -4,12 +4,15 @@
 #include <Stepper.h>
 
 /*Pins*/
-const int pin_temp = 2;
-const int pin_humi; //(analog)
-const int pin_light_sensor; //(analog)
+#define pin_temp = 2;
+#define pin_moist; //(analog)
+#define pin_light_sensor; //(analog)
+#define pin_hose; //(digital)
 
 /*Variables*/
 const int stepsPerRevolution = 64;
+int X;
+int min_moist; // valor de 0-100 (%)
 
 /*Objects*/
 OneWire oneWire(pin_temp);
@@ -22,7 +25,7 @@ void setup() {
 
   Serial.begin(9600);
 
-  pinMode(pin_humi, INPUT);
+  pinMode(pin_moist, INPUT);
   pinMode(pin_light_sensor, INPUT);
 
   rtc.begin();
@@ -32,41 +35,71 @@ void setup() {
 
 void loop() {
 
+  t = rtc.getTime();
+  X = t.hour + (t.min)*100/60;
 
+  if (X == 6.0 && moist <= min_moist) { //por 10 min só (?) ou depende da mosit
+
+    water();
+
+  } else if (x == 6.17) {
+
+    water_stop();
+
+  }
+
+  //stopped here
+
+  log_data();
 
 }
 
-float humi() {
+moist moist() {
 
-  float humity;
+  float moist;
 
   for (int i = 0; i < 100; i++) {
-    humity += analogRead(pin_humi);
+    humitty += analogRead(pin_moist);
     delay(1);
   }
 
-  humity = (- (humity)/6.71 + 100)/50;
+  moist = (- (moist)/6.71 + 100)/50;
 
-  if (humity > 100) {
-    humity = 100;
-  } else if (humi < 0) {
-    humity = 0;
+  if (moist > 100) {
+    moist = 100;
+  } else if (moist < 0) {
+    moist = 0;
   }
 
-  return humity;
-
+  return moist;
 }
 
 float temp() {
+
   term.requestTemperatures();
   temp = term.getTempCByIndex(0);
+
   retrun temp;
+
 }
 
 long lux() {
+
   long luz;
 
   luz = analogRead(pin_light_sensor);
 
   return luz;
+}
+
+void water() {
+
+  digitalWrite(pin_hose, HIGH);
+
+}
+
+void water_stop() {
+
+  digitalWrite(pin_hose, HIGH);
+
 }
