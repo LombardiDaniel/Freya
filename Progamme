@@ -2,19 +2,24 @@
 #include <OneWire.h>
 #include <DS3231.h>
 #include <Stepper.h>
+#include <SD.h>
+#include <SPI.h>
 
 /*Pins*/
 #define pin_temp = 2;
 #define pin_moist; //(analog)
 #define pin_light_sensor; //(analog)
 #define pin_hose; //(digital)
+#define pinCS; //analog
 
 /*Variables*/
 const int stepsPerRevolution = 64;
+int minuto, minuto_ant;
 int X;
 int min_moist; // valor de 0-100 (%)
 
 /*Objects*/
+File myFile;
 OneWire oneWire(pin_temp);
 DallasTemperature term(&oneWire);
 Stepper myStepper(stepsPerRevolution, 8,10,9,11); //pinos do stepper
@@ -25,11 +30,19 @@ void setup() {
 
   Serial.begin(9600);
 
+  pinMode(pin_temp, INPUT);
   pinMode(pin_moist, INPUT);
   pinMode(pin_light_sensor, INPUT);
+  pinMode(pin_hose, OUTPUT);
+  pinMode(pinCS, OUTPUT);
 
+  SD.begin();
   rtc.begin();
   term.begin();
+
+  if (SD.begin()) {
+    myFile = SD.open("data_")
+  }
 
 }
 
@@ -50,7 +63,11 @@ void loop() {
 
   //stopped here
 
-  log_data();
+  minuto = t.min;
+  if (minuto != minuto_ant) {
+    minuto_ant = minuto;
+    log_data();
+  }
 
 }
 
@@ -101,5 +118,11 @@ void water() {
 void water_stop() {
 
   digitalWrite(pin_hose, HIGH);
+
+}
+
+void log_data() {
+
+  t = rtc.getTime
 
 }
