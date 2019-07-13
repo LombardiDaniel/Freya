@@ -19,7 +19,8 @@
 #define pin_relay; //digital
 
 /*Variables*/
-const int stepsPerRevolution = 64;
+const int steps = 2038;
+const float rot_speed = 9;
 float X;
 int min_moist; // valor de 0-100 (%)
 int max_moint; //valor para medir qnd tenq parar
@@ -30,7 +31,7 @@ bool hatch_state;
 File myFile;
 OneWire oneWire(pin_temp);
 DallasTemperature term(&oneWire);
-Stepper myStepper(stepsPerRevolution, 8,10,9,11); //pinos do stepper
+Stepper hatchMotor(steps, 8,10,9,11); //pinos do stepper
 Time t;
 DS3231 rtc(SDA, SCL);
 
@@ -42,6 +43,8 @@ void setup() {
   pinMode(pin_hose, OUTPUT);
   pinMode(pinCS, OUTPUT);
   pinMode(pin_reset, OUTPUT_PULLUP)
+
+  hatchMotor.speed(rot_speed);
 
   SD.begin();
   rtc.begin();
@@ -201,9 +204,14 @@ void new_day() {
 
 void hatch_open() {
 
+  hatchMotor.step(steps/2);
+
   hatch_state = TRUE;
 }
 
 void hatch_close() {
+
+  hatchMotor.step(-steps/2);
+
   hatch_state = FALSE;
 }
