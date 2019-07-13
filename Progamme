@@ -50,6 +50,7 @@ void setup() {
   SD.begin();
   rtc.begin();
   term.begin();
+  hatch_state = "open";
 
   new_day();
 
@@ -207,14 +208,20 @@ void new_day() {
 
 void hatch_open() {
 
-  hatch.write(180);
-
+  for (int pos = 0; pos <= 180; pos++) {
+    hatch.write(pos);
+    delay(50);
+  }
   hatch_state = "opened";
+
 }
 
 void hatch_close() {
 
-  hatch.write(0);
-
+  for (int pos = 180; pos >= 0; pos--) {
+    hatch.write(pos);
+    delay(50);
+  }
   hatch_state = "closed";
+  
 }
