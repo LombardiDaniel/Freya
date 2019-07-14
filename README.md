@@ -21,7 +21,7 @@ All libraries I used are open-source and can be downloaded free of charge.
 They can be found at:
 
 * [DallasTemperarue.h](https://github.com/milesburton/Arduino-Temperature-Control-Library)
-* [DS3231](http://www.rinkydinkelectronics.com/library.php?id=73)
+* [DS3231.h](http://www.rinkydinkelectronics.com/library.php?id=73)
 * [OneWire.h](https://github.com/PaulStoffregen/OneWire)
 
 *All other libraries are pre-installed with the Arduino IDE*
@@ -63,4 +63,26 @@ hatch_state = "open";
 
 ## Deployment
 
-Freya was intended to be used on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like.
+Freya is intended to be a cheap autonomous garden, used primarily on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like. There is no Soil Acidity sensor because they can be quite expensive, and therefore, are over the desired budget. It need one power source (a simple 110V power outlet will do) but needs to be stepped down to 9-12V, to be suitable to the Arduino.
+
+## Built With
+
+* [Atom](http://atom.io/) - The text editor used
+* [Arduino IDE](https://www.arduino.cc/en/main/software) - Compile and upload software used
+*Various other softwares were used, such as Atom Packages, Github itself and others, that will not be listed here, to keep things simple.*
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/LombardiDaniel/Freya/).
+
+## Authors
+
+* **Daniel Lombardi** - *Initial work* - [LombardiDaniel](https://github.com/LombardiDaniel)
+
+See also the list of [contributors](https://github.com/LombardiDaniel/Freya/contributors) who participated in this project.
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
