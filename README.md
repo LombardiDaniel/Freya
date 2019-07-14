@@ -13,7 +13,7 @@
   </a>
 
   <p align="center">
-    HEMERA Light Controller
+    Freya
     <br />
     <br />
     .
