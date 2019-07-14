@@ -2,8 +2,10 @@
 
 # Freya
 
-[![MIT license](https://img.shields.io/github/license/LombardiDaniel/Freya.svg)](LICENSE.md)
-[![SemVer pre-release](https://img.shields.io/github/tag-pre/LombardiDaniel/Freya.svg)](https://semver.org)
+[![Build Status][build-shield]][build-url]
+[![Contributors][contributors-shield]][contributors-url]
+[![MIT License][https://img.shields.io/github/license/LombardiDaniel/Freya.svg]](LICENSE)
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/daniel-lombardi-de-oliveira-95b372147/)
 
 Freya is an autonomous garden built on the Arduino platform, it is capable of a few basic functions and data logging. Built mainly for indoor or outdoor apartment use. The name was inspired by the Titanic Keeper Freya, that resides in the Temple of Life in Northrend, a continent in Azeroth, from the lore of World of Warcraft.
 
@@ -90,6 +92,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* [Arduino-Uploader]
