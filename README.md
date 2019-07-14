@@ -30,10 +30,10 @@ The other libraries are pre-intalled with the Arduino IDE
 
 Freya does not need any other program to work. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers ou Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
 
-The exported files to the SD card will start as:
+The exported files to the SD card will be named as:
 
 ```
-"Freya_data_" + current date + ".txt"
+"Freya_data_" + CURRENT DATE + ".txt"
 ```
 
 and will have the following organization:
@@ -46,3 +46,17 @@ and will have the following organization:
 There are no needed tests needed for Freya to work.
 
 However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct.
+
+### Break down into end to end tests
+
+You must be careful as to how the hatch system is built, as most servos can only rotate 180º, that must be taken into consideration, the 'extreme' rotation values (0 and 180) must be aligned to the CLOSED and OPEN position, respectively.
+When you the program, however, the current position does not matter, as it will be rotated on system begin, to open position.
+As in:
+
+```
+for (int pos = 0; pos <= 180; pos++) {
+  hatch.write(pos);
+  delay(50);
+}
+hatch_state = "open";
+```
