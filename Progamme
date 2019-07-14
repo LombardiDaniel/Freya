@@ -1,7 +1,14 @@
-/*
-  Parou na 69, falta fazer o código que vê se ta frio dmais
-  e se estiver, cobre e liga luz, se for horario de dia
-*/
+/**
+ * @Author: DanielLombardi
+ * @Date:   2019-07-10T21:15:37-03:00
+ * @Last modified by:   DanielLombardi
+ * @Last modified time: 2019-07-14T12:22:46-03:00
+
+Needs Fixing:
+  linha 80 - fazer a linha 86?
+  
+ */
+
 #include <DallasTemperature.h>
 #include <OneWire.h>
 #include <DS3231.h>
@@ -22,10 +29,10 @@
 /*Variables*/
 const int steps = 2038;
 const float rot_speed = 9;
+const int min_moist; // valor de 0-100 (%)
+const int max_moint; //valor para medir qnd tenq parar
+const int min_temp; // medir qnd tenq começar
 float X;
-int min_moist; // valor de 0-100 (%)
-int max_moint; //valor para medir qnd tenq parar
-int min_temp;
 str hatch_state;
 
 /*Objects*/
@@ -70,22 +77,22 @@ void loop() {
     new_day();
   }
 
-  //ve se precisa regar
-  if (X == 6.0 && moist <= min_moist) { //por 10 min só (?) ou depende da mosit
+  //precisa fazer um sistema em que water_start() dependa de moist()
+  //ai muda o tempo que a agua fica ligada (+ ou - tempo)
+  if (X == 6.0 && moist() <= min_moist) { //por 10 min só (?) ou depende da mosit
 
     water_start();
-
+//ou esse '6.17' na vdd depende de moist => esse é bom
   } else if (x >= 6.17 || moist > max_moist) {
 
     water_stop();
 
   }
 
-  //a porta só se movimenta quando troca a hora (se precisar)
-  long ideal_light = sin((X-6)*3.1416/12); //converter p lux
-  
-  if (t.min == 0) {
-    if ( (temp() <= min_temp) && (lux() < 1/2 * ideal_light) {
+
+  if (t.min == 0) { //troca de hora
+    long ideal_light = sin((X-6)*3.1416/12); //converter p lux
+    if ( (temp() <= min_temp) && (lux() < ideal_light * 0.) {
       hatch_close();
     } else {
       hatch_open();
