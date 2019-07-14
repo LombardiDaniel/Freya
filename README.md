@@ -58,7 +58,7 @@ You must be careful as to how the hatch system is built, as most servos can only
 When you the program, however, the current position does not matter, as it will be rotated on system begin, to open position.
 As in:
 
-```
+```C++
 for (int pos = 0; pos <= 180; pos++) {
   hatch.write(pos);
   delay(50);
@@ -74,7 +74,7 @@ Freya is intended to be a cheap autonomous garden, used primarily on apartment v
 
 * [Atom](http://atom.io/) - The text editor used
 * [Arduino IDE](https://www.arduino.cc/en/main/software) - Compile and upload software used
-*Various other softwares were used, such as Atom Packages, Github itself and others, that will not be listed here, to keep things simple.*
+*Various other softwares were used, such as Atom Packages, Github itself and others, they are listed on [Acknowledgements](#acknowledgements).*
 
 ## Versioning
 
@@ -92,4 +92,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [Arduino-Uploader]
+* [language-arduino](https://atom.io/packages/language-arduino)
+* [arduino-upload](https://atom.io/packages/arduino-upload)
+* Hat tip to anyone whose code was used
