@@ -29,7 +29,7 @@ They can be found at:
 * [DS3231.h](http://www.rinkydinkelectronics.com/library.php?id=73)
 * [OneWire.h](https://github.com/PaulStoffregen/OneWire)
 
-*All other libraries are pre-installed with the Arduino IDE*
+*All other libraries used come pre-installed with the Arduino IDE*
 
 ### Installing
 
