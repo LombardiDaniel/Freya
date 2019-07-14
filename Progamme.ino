@@ -2,7 +2,7 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-14T14:38:26-03:00
+ * @Last modified time: 2019-07-14T16:03:16-03:00
 
 Needs Fixing:
   linha 80 - fazer a linha 86?
@@ -83,7 +83,7 @@ void loop() {
 
     water_start();
 //ou esse '6.17' na vdd depende de moist => esse é bom
-  } else if (x >= 6.17 || moist > max_moist) {
+} else if (X >= 6.17 || moist > max_moist) {
 
     water_stop();
 
