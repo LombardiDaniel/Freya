@@ -83,7 +83,7 @@ and will have the following organization:
 
 ## Running the tests
 
-There are no needed tests needed for Freya to work.
+There are no needed tests for Freya to work.
 
 However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct.
 
@@ -103,7 +103,7 @@ hatch_state = "open";
 
 ## Deployment
 
-Freya is intended to be a cheap autonomous garden, used primarily on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like. There is no Soil Acidity sensor because they can be quite expensive, and therefore, are over the desired budget. It need one power source (a simple 110V power outlet will do) but needs to be stepped down to 9-12V, to be suitable to the Arduino.
+Freya is intended to be a cheap autonomous garden, used primarily on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like. There is no Soil Acidity sensor because they can be quite expensive, and therefore, are over the desired budget. It needs one power source (a simple 110V power outlet will do) but needs to be stepped down to 9-12V, to be suitable to the Arduino.
 
 ## Built With
 
