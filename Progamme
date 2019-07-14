@@ -2,11 +2,11 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-14T12:22:46-03:00
+ * @Last modified time: 2019-07-14T12:33:54-03:00
 
 Needs Fixing:
   linha 80 - fazer a linha 86?
-  
+
  */
 
 #include <DallasTemperature.h>
