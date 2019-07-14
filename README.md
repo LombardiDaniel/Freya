@@ -2,8 +2,8 @@
 
 # Freya
 
-[![Contributors](https://img.shields.io/github/contributors/LombardiDaniel/Freya.svg?style=flat-square)](https://github.com/LombardiDaniel/Freya/graphs/contributors)
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Freya.svg?style=flat-square)](LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/LombardiDaniel/Freya.svg?style=flat-square)](https://github.com/LombardiDaniel/Freya/graphs/contributors)
 [![LinkedIn](https://camo.githubusercontent.com/c456ce1e22c379a6ff198bbb3a2d96f24fc94408/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d626c61636b2e7376673f7374796c653d666c61742d737175617265266c6f676f3d6c696e6b6564696e26636f6c6f72423d353535)](https://www.linkedin.com/in/daniel-lombardi-de-oliveira-95b372147/)
 
 
@@ -88,7 +88,7 @@ See also the list of [contributors](https://github.com/LombardiDaniel/Freya/cont
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
