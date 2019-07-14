@@ -55,7 +55,7 @@ However, if you are not using the exact same sensors as me, you should make sure
 ### Break down into end to end tests
 
 You must be careful as to how the hatch system is built, as most servos can only rotate 180º, that must be taken into consideration, the 'extreme' rotation values (0 and 180) must be aligned to the CLOSED and OPEN position, respectively.
-When you the program, however, the current position does not matter, as it will be rotated on system begin, to open position.
+When you run the program, however, the current position does not matter, as it will be rotated on system begin, to open position.
 As in:
 
 ```C++
