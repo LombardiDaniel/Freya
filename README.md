@@ -109,7 +109,7 @@ Freya is intended to be a cheap autonomous garden, used primarily on apartment v
 
 * [Atom](http://atom.io/) - The text editor used
 * [Arduino IDE](https://www.arduino.cc/en/main/software) - Compile and upload software used
-*Various other softwares were used, such as Atom Packages, Github itself and others, they are listed on [Acknowledgements](#acknowledgements).*
+* Various other softwares were used, such as Atom Packages, Github itself and others, they are listed on [Acknowledgements](#cknowledgements)
 
 ## Versioning
 
