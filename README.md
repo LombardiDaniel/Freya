@@ -19,12 +19,14 @@ All libraries I used are open-source and can be downloaded free of charge.
 <OneWire.h>
 ```
 They can be found at:
-*https://github.com/milesburton/Arduino-Temperature-Control-Library
+
+https://github.com/milesburton/Arduino-Temperature-Control-Library
 
 http://www.rinkydinkelectronics.com/library.php?id=73
 
-https://github.com/PaulStoffregen/OneWire*
-The other libraries are pre-intalled with the Arduino IDE
+https://github.com/PaulStoffregen/OneWire
+
+*The other libraries are pre-intalled with the Arduino IDE*
 
 ### Installing
 
