@@ -10,14 +10,14 @@
 #include <SPI.h>
 
 /*Pins*/
-#define pin_temp = 2;
-#define pin_moist; //analog
-#define pin_light_sensor; //analog
-#define pin_hose; //digital
-#define pinCS; //analog
-#define pin_reset; //analog
-#define pin_relay; //digital
-#define pin_servo; //PWM
+#define pin_temp 2
+#define pin_moist //analog
+#define pin_light_sensor //analog
+#define pin_hose //digital
+#define pinCS //analog
+#define pin_reset //analog
+#define pin_relay //digital
+#define pin_servo //PWM
 
 /*Variables*/
 const int steps = 2038;
@@ -50,6 +50,11 @@ void setup() {
   SD.begin();
   rtc.begin();
   term.begin();
+
+  for (int pos = 0; pos <= 180; pos++) {
+    hatch.write(pos);
+    delay(50);
+  }
   hatch_state = "open";
 
   new_day();
@@ -223,5 +228,5 @@ void hatch_close() {
     delay(50);
   }
   hatch_state = "closed";
-  
+
 }
