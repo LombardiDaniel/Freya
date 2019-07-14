@@ -16,7 +16,7 @@ On one of my designs, the servo motor used to open/close the hatch is stuck to t
 ### Prerequisites
 
 All libraries I used are open-source and can be downloaded free of charge.
-```
+```C++
 <DallasTemperature.h>
 <DS3231.h>
 <OneWire.h>
@@ -35,12 +35,12 @@ Freya does not need any other program to work. Yet, it is recommended (as for da
 
 The exported files to the SD card will be named as:
 
-```
+```C++
 "Freya_data_" + CURRENT DATE + ".txt"
 ```
 
 and will have the following organization:
-```
+```C++
 "TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE"
 ```
 
