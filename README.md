@@ -10,9 +10,16 @@ On one of my designs, the servo motor used to open/close the hatch is stuck to t
 
 ### Prerequisites
 
-All libraries I used are open-source and can be downloaded on github (some are already pre-intalled on the Arduino IDE)
+All libraries I used are open-source and can be downloaded free of charge
 ```
-<DallasTemperature.h> https://github.com/milesburton/Arduino-Temperature-Control-Library
-<DS3231.h> http://www.rinkydinkelectronics.com/library.php?id=73
-<OneWire.h> https://github.com/PaulStoffregen/OneWire
+<DallasTemperature.h>
+<DS3231.h>
+<OneWire.h>
 ```
+Can be found at:
+```
+https://github.com/milesburton/Arduino-Temperature-Control-Library
+http://www.rinkydinkelectronics.com/library.php?id=73
+https://github.com/PaulStoffregen/OneWire
+```
+The other libraries are pre-intalled with the Arduino IDE
