@@ -1,6 +1,6 @@
 # Freya
 
-Freya is an autonomous garden built on the Arduino platform, it is capable of a few basic functions and data logging. Built mainly for indoor or outdoor apartment use. The name was inspired by the Titanic Keeper Freya, that resides in the Temple of Life in Northrend.
+Freya is an autonomous garden built on the Arduino platform, it is capable of a few basic functions and data logging. Built mainly for indoor or outdoor apartment use. The name was inspired by the Titanic Keeper Freya, that resides in the Temple of Life in Northrend, a continent in Azeroth, from the lore of World of Warcraft.
 
 ## Getting Started
 
@@ -10,13 +10,13 @@ On one of my designs, the servo motor used to open/close the hatch is stuck to t
 
 ### Prerequisites
 
-All libraries I used are open-source and can be downloaded free of charge
+All libraries I used are open-source and can be downloaded free of charge.
 ```
 <DallasTemperature.h>
 <DS3231.h>
 <OneWire.h>
 ```
-Can be found at:
+They can be found at:
 ```
 https://github.com/milesburton/Arduino-Temperature-Control-Library
 http://www.rinkydinkelectronics.com/library.php?id=73
