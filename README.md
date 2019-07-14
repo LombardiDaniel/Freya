@@ -20,13 +20,11 @@ All libraries I used are open-source and can be downloaded free of charge.
 ```
 They can be found at:
 
-https://github.com/milesburton/Arduino-Temperature-Control-Library
+* [DallasTemperarue.h](https://github.com/milesburton/Arduino-Temperature-Control-Library)
+* [DS3231](http://www.rinkydinkelectronics.com/library.php?id=73)
+* [OneWire.h](https://github.com/PaulStoffregen/OneWire)
 
-http://www.rinkydinkelectronics.com/library.php?id=73
-
-https://github.com/PaulStoffregen/OneWire
-
-*The other libraries are pre-intalled with the Arduino IDE*
+*All other libraries are pre-installed with the Arduino IDE*
 
 ### Installing
 
@@ -62,3 +60,7 @@ for (int pos = 0; pos <= 180; pos++) {
 }
 hatch_state = "open";
 ```
+
+## Deployment
+
+Freya was intended to be used on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like.
