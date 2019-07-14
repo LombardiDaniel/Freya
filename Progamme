@@ -81,9 +81,11 @@ void loop() {
 
   }
 
-  //a porta só se movimenta quando troca a hora
+  //a porta só se movimenta quando troca a hora (se precisar)
+  long ideal_light = sin((X-6)*3.1416/12); //converter p lux
+  
   if (t.min == 0) {
-    if (temp() <= min_temp) {
+    if ( (temp() <= min_temp) && (lux() < 1/2 * ideal_light) {
       hatch_close();
     } else {
       hatch_open();
@@ -132,7 +134,7 @@ float temp() {
 
 }
 
-long lux() {
+long lux() { //falta converter a unidade
 
   long luz;
 
@@ -153,7 +155,7 @@ void water_stop() {
 
 }
 
-void luz() {
+void luz_start() {
 
   t = rtc.getTime();
 
