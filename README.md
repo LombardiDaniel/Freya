@@ -25,6 +25,23 @@
 </p>
 
 
+## Table of Contents
+
+* [About the Project](#about-the-project)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Running the tests](#running-the-tests)
+  * [Break down into end to end tests](#break-down-into-end-to-end-tests)
+* [Deployment](#deployment)
+* [Built With](#built-with)
+* [Versioning](#versioning)
+* [Authors](#authors)
+* [License](#license)
+* [Acknowledgements](#acknowledgements)
+
+## About the Project
+
 Freya is an autonomous garden built on the Arduino platform, it is capable of a few basic functions and data logging. Built mainly for indoor or outdoor apartment use. The name was inspired by the Titanic Keeper Freya, that resides in the Temple of Life in Northrend, a continent in Azeroth, from the lore of World of Warcraft.
 
 ## Getting Started
@@ -49,7 +66,7 @@ They can be found at:
 
 *All other libraries used come pre-installed with the Arduino IDE*
 
-### Installing
+### Installation
 
 Freya does not need any other program to work. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers ou Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
 
