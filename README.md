@@ -1,5 +1,3 @@
-**AS THE BRANCH NAME SUGGESTS, THIS IS STILL IN ITS TESTING FASE, AND THEREFORE,  THE CODE IS NOT FINISHED AND THERE ARE STILL ADJUSTMENTS NEEDED**
-
 # Freya
 
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Freya.svg?style=flat-square)](LICENSE)
