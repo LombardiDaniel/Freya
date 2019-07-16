@@ -1,5 +1,3 @@
-**AS THE BRANCH NAME SUGGESTS, THIS IS STILL IN ITS TESTING FASE, AND THEREFORE,  THE CODE IS NOT FINISHED AND THERE ARE STILL ADJUSTMENTS NEEDED**
-
 # Freya
 
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Freya.svg?style=flat-square)](LICENSE)
@@ -52,7 +50,7 @@ On one of my designs, the servo motor used to open/close the hatch is stuck to t
 
 ### Prerequisites
 
-All libraries I used are open-source and can be downloaded free of charge.
+All libraries I used are open-source.
 ```C++
 <DallasTemperature.h>
 <DS3231.h>
