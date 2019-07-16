@@ -2,7 +2,7 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-15T23:05:44-03:00
+ * @Last modified time: 2019-07-15T23:06:24-03:00
 
 Needs Fixing:
   linha 82~ fazer com testes
@@ -216,7 +216,7 @@ void new_day() {
     myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
     if (myFile) {
       myFile.println("");
-      myFile.println("TIME(H,M(%)),LIGHT(%),SOIL_TEMPERATURE(ºC),SOIL_MOISTURE(%)");
+      myFile.println("TIME(H.M(%)),LIGHT(%),SOIL_TEMPERATURE(ºC),SOIL_MOISTURE(%)");
       myFile.close();
     }
   }
