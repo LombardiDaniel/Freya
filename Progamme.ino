@@ -2,10 +2,12 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-14T16:03:16-03:00
+ * @Last modified time: 2019-07-15T23:05:44-03:00
 
 Needs Fixing:
-  linha 80 - fazer a linha 86?
+  linha 82~ fazer com testes
+  linha 144 - descobrir o valor máximo que da pra ter
+    e usar a função map(value, fromLow, fromHigh, toLow, toHigh);
 
  */
 
@@ -112,16 +114,17 @@ void loop() {
 
 }
 
-moist moist() {
+void moist() {
 
-  float moist;
+  float moist, humidity;
 
   for (int i = 0; i < 100; i++) {
-    humitty += analogRead(pin_moist);
+    humidity += analogRead(pin_moist);
     delay(1);
   }
 
-  moist = (- (moist)/6.71 + 100)/50;
+  moist = 57.7638 * pow(2.73, 0.0068055 * humidity);
+
 
   if (moist > 100) {
     moist = 100;
@@ -213,7 +216,7 @@ void new_day() {
     myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
     if (myFile) {
       myFile.println("");
-      myFile.println("TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE");
+      myFile.println("TIME(H,M(%)),LIGHT(%),SOIL_TEMPERATURE(ºC),SOIL_MOISTURE(%)");
       myFile.close();
     }
   }
