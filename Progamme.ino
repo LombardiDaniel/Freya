@@ -2,7 +2,7 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-15T23:06:24-03:00
+ * @Last modified time: 2019-07-23T16:46:34-03:00
 
 Needs Fixing:
   linha 82~ fazer com testes
@@ -66,6 +66,8 @@ void setup() {
   }
   hatch_state = "open";
 
+  logged_state = false;
+
   new_day();
 
 }
@@ -108,8 +110,10 @@ void loop() {
   }
 
   // Um log a cada 10 minutos
-  if ((t.min)%10 != 0) {
+  if ((t.min)%10 == 0 && logged_state == false) {
     log_data();
+  } else if ((t.min)%10 != 0 && logged_state == true) {
+    logged_state == false;
   }
 
 }
@@ -205,6 +209,8 @@ void log_data() {
     myFile.println(moist());
     myFile.close();
   }
+
+  logged_state = true;
 
 }
 
