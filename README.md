@@ -1,6 +1,3 @@
-<!- linha 75 ->
-
-
 # Freya
 
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Freya.svg?style=flat-square)](LICENSE)
@@ -75,7 +72,13 @@ The repository can be cloned via
 git clone https://github.com/LombardiDaniel/Freya.git
 ```
 
-Freya does not need any other program to work. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
+After that, just open the code on the [Arduino IDE](https://www.arduino.cc/en/main/software), make sure the pins are correctly connected and you are good.
+
+## Running the tests
+
+There are no tests needed for Freya to work.
+
+Freya does not need any other softwares. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
 
 The exported files to the SD card will be named as:
 
@@ -87,10 +90,6 @@ and will have the following organization:
 ```C++
 "TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE"
 ```
-
-## Running the tests
-
-There are no needed tests for Freya to work.
 
 However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct.
 
