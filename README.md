@@ -1,3 +1,6 @@
+<!- linha 75 ->
+
+
 # Freya
 
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Freya.svg?style=flat-square)](LICENSE)
@@ -66,7 +69,13 @@ They can be found at:
 
 ### Installation
 
-Freya does not need any other program to work. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers ou Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
+The repository can be cloned via
+
+```sh
+git clone https://github.com/LombardiDaniel/Freya.git
+```
+
+Freya does not need any other program to work. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
 
 The exported files to the SD card will be named as:
 
