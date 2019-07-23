@@ -66,7 +66,7 @@ They can be found at:
 
 ### Installation
 
-The repository can be cloned via
+The repository can be cloned via:
 
 ```sh
 git clone https://github.com/LombardiDaniel/Freya.git
@@ -129,7 +129,7 @@ See also the list of [contributors](https://github.com/LombardiDaniel/Freya/cont
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 

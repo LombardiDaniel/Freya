@@ -2,11 +2,11 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-23T16:46:34-03:00
+ * @Last modified time: 2019-07-23T16:51:01-03:00
 
 Needs Fixing:
-  linha 82~ fazer com testes
-  linha 144 - descobrir o valor máximo que da pra ter
+  linha 84~90 fazer com testes
+  linha 145~152 (luz)- descobrir o valor máximo que da pra ter
     e usar a função map(value, fromLow, fromHigh, toLow, toHigh);
 
  */
@@ -84,15 +84,10 @@ void loop() {
   //precisa fazer um sistema em que water_start() dependa de moist()
   //ai muda o tempo que a agua fica ligada (+ ou - tempo)
   if (X == 6.0 && moist() <= min_moist) { //por 10 min só (?) ou depende da mosit
-
     water_start();
-//ou esse '6.17' na vdd depende de moist => esse é bom
-} else if (X >= 6.17 || moist > max_moist) {
-
+} else if (X >= 6.166 || moist > max_moist) {
     water_stop();
-
   }
-
 
   if (t.min == 0) { //troca de hora
     long ideal_light = sin((X-6)*3.1416/12); //converter p lux
@@ -128,7 +123,6 @@ void moist() {
   }
 
   moist = 57.7638 * pow(2.73, 0.0068055 * humidity);
-
 
   if (moist > 100) {
     moist = 100;
