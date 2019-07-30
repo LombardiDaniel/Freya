@@ -2,7 +2,7 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-23T16:51:01-03:00
+ * @Last modified time: 2019-07-30T09:27:46-03:00
 
 Needs Fixing:
   linha 84~90 fazer com testes
@@ -35,7 +35,7 @@ const int min_moist; // valor de 0-100 (%)
 const int max_moint; //valor para medir qnd tenq parar
 const int min_temp; // medir qnd tenq começar
 float X;
-str hatch_state;
+char hatch_state[];
 
 /*Objects*/
 File myFile;
