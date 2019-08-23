@@ -2,7 +2,7 @@
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
  * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-07-30T09:27:46-03:00
+ * @Last modified time: 2019-08-22T19:01:20-03:00
 
 Needs Fixing:
   linha 84~90 fazer com testes
@@ -29,21 +29,21 @@ Needs Fixing:
 #define pin_servo //PWM
 
 /*Variables*/
-const int steps = 2038;
-const float rot_speed = 9;
+const int steps = 2038; // setado para o motor específico
+const float rot_speed = 9; // velocidade 'otimizada' que eu encontrei
 const int min_moist; // valor de 0-100 (%)
 const int max_moint; //valor para medir qnd tenq parar
 const int min_temp; // medir qnd tenq começar
-float X;
+float X; // contador de horas com minutos em decimal (10 ^ (-2))
 char hatch_state[];
 
 /*Objects*/
-File myFile;
+File myFile; // SD card reader
 OneWire oneWire(pin_temp);
-DallasTemperature term(&oneWire);
+DallasTemperature term(&oneWire); // lib que faz a medição de temp e humidade sem precisar de códico complexo
 Servo hatch; //pinos do stepper
-Time t;
-DS3231 rtc(SDA, SCL);
+Time t; // para trabalhar com DS3231
+DS3231 rtc(SDA, SCL); // inicia o DS3231
 
 void setup() {
 
@@ -81,6 +81,7 @@ void loop() {
     new_day();
   }
 
+
   //precisa fazer um sistema em que water_start() dependa de moist()
   //ai muda o tempo que a agua fica ligada (+ ou - tempo)
   if (X == 6.0 && moist() <= min_moist) { //por 10 min só (?) ou depende da mosit
@@ -99,7 +100,7 @@ void loop() {
   }
 
   if (hatch_state == "closed") {
-    luz();
+    luz_start();
   } else {
     luz_stop();
   }
@@ -154,13 +155,11 @@ long lux() { //falta converter a unidade
 void water_start() {
 
   digitalWrite(pin_hose, HIGH);
-
 }
 
 void water_stop() {
 
   digitalWrite(pin_hose, HIGH);
-
 }
 
 void luz_start() {
@@ -195,12 +194,15 @@ void log_data() {
 
   if (myFile) {
     myFile.print(X);
+    myFile.print(",HATCH: ");
+    myFile.print(hatch_state);
     myFile.print(",");
     myFile.print(lux());
     myFile.print(",");
     myFile.print(temp());
     myFile.print(",");
     myFile.println(moist());
+    myFile.print(",");
     myFile.close();
   }
 

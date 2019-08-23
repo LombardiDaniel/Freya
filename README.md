@@ -88,7 +88,7 @@ The exported files to the SD card will be named as:
 
 and will have the following organization:
 ```C++
-"TIME,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE"
+"TIME,HATCH_STATE,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE"
 ```
 
 However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct.
