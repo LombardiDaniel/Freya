@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/LombardiDaniel/Freya/">
-    <img src="LOGO.jpg" alt="Logo" width="80" height="80">
+    <img src="LOGO.jpg" alt="Logo" width="160" height="160">
   </a>
 
   <p align="center">
