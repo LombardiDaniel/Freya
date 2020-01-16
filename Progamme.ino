@@ -1,8 +1,8 @@
 /**
  * @Author: DanielLombardi
  * @Date:   2019-07-10T21:15:37-03:00
- * @Last modified by:   DanielLombardi
- * @Last modified time: 2019-08-22T19:01:20-03:00
+ * @Last modified by:   daniellombardi
+ * @Last modified time: 2020-01-16T13:48:31-02:00
 
 Needs Fixing:
   linha 84~90 fazer com testes
@@ -20,13 +20,13 @@ Needs Fixing:
 
 /*Pins*/
 #define pin_temp 2
-#define pin_moist //analog
-#define pin_light_sensor //analog
-#define pin_hose //digital
-#define pinCS //analog
-#define pin_reset //analog
-#define pin_relay //digital
-#define pin_servo //PWM
+#define pin_moist //must be analog
+#define pin_light_sensor //must be analog
+#define pin_hose //must be digital
+#define pinCS //must be analog
+#define pin_reset //must be analog
+#define pin_relay //must be digital
+#define pin_servo //must be PWM
 
 /*Variables*/
 const int steps = 2038; // setado para o motor específico
@@ -82,8 +82,8 @@ void loop() {
   }
 
 
-  //precisa fazer um sistema em que water_start() dependa de moist()
-  //ai muda o tempo que a agua fica ligada (+ ou - tempo)
+  /*precisa fazer um sistema em que water_start() dependa de moist()
+  ai muda o tempo que a agua fica ligada (+ ou - tempo)*/
   if (X == 6.0 && moist() <= min_moist) { //por 10 min só (?) ou depende da mosit
     water_start();
 } else if (X >= 6.166 || moist > max_moist) {
@@ -91,8 +91,8 @@ void loop() {
   }
 
   if (t.min == 0) { //troca de hora
-    long ideal_light = sin((X-6)*3.1416/12); //converter p lux
-    if ( (temp() <= min_temp) && (lux() < ideal_light * 0.) {
+    long ideal_light = sin((X-6)*3.1416/12); //converter p lux e achar valor de % (no momento é 0.6)
+    if ( (temp() <= min_temp) && (lux() < ideal_light * 0.6) {
       hatch_close();
     } else {
       hatch_open();
@@ -143,7 +143,7 @@ float temp() {
 
 }
 
-long lux() { //falta converter a unidade
+long lux() { //falta converter a unidade (fazer % da maior do dia)
 
   long luz;
 
@@ -218,7 +218,7 @@ void new_day() {
     myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
     if (myFile) {
       myFile.println("");
-      myFile.println("TIME(H.M(%)),LIGHT(%),SOIL_TEMPERATURE(ºC),SOIL_MOISTURE(%)");
+      myFile.println("TIME[H.M(decimal)],LIGHT[%],SOIL_TEMPERATURE[ºC],SOIL_MOISTURE[%]");
       myFile.close();
     }
   }

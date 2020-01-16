@@ -48,7 +48,7 @@ The name was inspired by the Titanic Keeper Freya, that resides in the Temple of
 
 Everything needed to build Freya using an Arduino Nano can be found in the Circuit.png file, it was built using the open-source software, Fritzing.
 About the very own garden structure, it is completely up to the user, pretty much any design will work, as long as the watering tube is capable of delivering water to the soil and the sensors are fitted in it.
-On one of my designs, the servo motor used to open/close the hatch is stuck to the side, so it only needs to rotate 180º to completely control the hatch. As for the LEDs, I used a simple, cheap LED strip, to be controlled by a N-channel mosfet.
+On one of my designs, the servo motor used to open/close the hatch is stuck to the side, so it only needs to rotate 180º to completely control the hatch. As for the LEDs, I used a simple, cheap LED strip, to be controlled by a mosfet connected to a digital port on the arduino.
 
 ### Prerequisites
 
@@ -74,13 +74,13 @@ The repository can be cloned via:
 git clone https://github.com/LombardiDaniel/Freya.git
 ```
 
-After that, just open the code on the [Arduino IDE](https://www.arduino.cc/en/main/software), make sure the pins are correctly connected and you are good.
+After that, just open the code on the [Arduino IDE](https://www.arduino.cc/en/main/software), updload and make sure the pins are correctly connected.
 
 ## Running the tests
 
 There are no tests needed for Freya to work.
 
-Freya does not need any other softwares. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. Or any other will do i.e. Python Math, R etc.
+Freya does not need any other softwares. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. It logs 4 data points every 10 minutes.
 
 The exported files to the SD card will be named as:
 
@@ -93,13 +93,13 @@ and will have the following organization:
 "TIME,HATCH_STATE,LIGHT,SOIL_TEMPERATURE,SOIL_MOISTURE"
 ```
 
-However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct.
+However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct. Keep in mind that the 'LIGHT' data point is, as of now, just a value, that isn't in any specific unit measure.
 
 ### Break down into end to end tests
 
 You must be careful as to how the hatch system is built, as most servos can only rotate 180º, that must be taken into consideration, the 'extreme' rotation values (0 and 180) must be aligned to the CLOSED and OPEN position, respectively.
-When you run the program, however, the current position does not matter, as it will be rotated on system begin, to open position.
-As in:
+When you run the program, however, the current position does not matter, as it will be set to the open position on system startup (setup phase).
+As in lines 63 to 67:
 
 ```C++
 for (int pos = 0; pos <= 180; pos++) {
@@ -111,7 +111,7 @@ hatch_state = "open";
 
 ## Deployment
 
-Freya is intended to be a cheap autonomous garden, used primarily on apartment verandas. The software is written in C++ Arduino, and has a few sensors in it, that can be used and combined to measure/do what ever the user feels like. There is no Soil Acidity sensor because they can be quite expensive, and therefore, are over the desired budget. It needs one power source (a simple 110V power outlet will do) but needs to be stepped down to 9-12V, to be suitable to the Arduino.
+Freya is intended to be a cheap autonomous garden, used primarily in apartment verandas. It is not intended to be used on any sort of commercial level. Thus, it was designed to be cheap and easy to build. There is no Soil Acidity sensor because they can be quite expensive, and therefore, are over the desired budget. It needs one power source (a simple 110V power outlet will do) but needs to be stepped down to 9-12V, to be suitable to the Arduino.
 
 ## Built With
 
