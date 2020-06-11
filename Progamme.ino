@@ -19,7 +19,7 @@ Needs Fixing:
 #define pin_moist //must be analog
 #define pin_light_sensor //must be analog
 #define pin_hose //must be digital
-#define pinCS //must be analog
+#define pin_CS //must be analog
 #define pin_reset //must be analog
 #define pin_relay //must be digital
 #define pin_servo //must be PWM
@@ -176,7 +176,7 @@ void setup() {
     pinMode(pin_moist, INPUT);
     pinMode(pin_light_sensor, INPUT);
     pinMode(pin_hose, OUTPUT);
-    pinMode(pinCS, OUTPUT);
+    pinMode(pin_CS, OUTPUT);
     pinMode(pin_reset, OUTPUT_PULLUP)
 
     hatch.attach(pin_servo);
