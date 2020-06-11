@@ -3,7 +3,8 @@
 Needs Fixing:
     linha 84~90 fazer com testes
     linha 145~152 (luz)- descobrir o valor máximo que da pra ter
-        e usar a função map(value, fromLow, fromHigh, toLow, toHigh);
+        e usar a função map(value, fromLow, fromHigh, toLow, toHigh)
+    adicionar o lance de longitute e latitude (fazer site com cidade?)
 
 */
 
@@ -14,7 +15,6 @@ Needs Fixing:
 #include <SD.h>
 #include <SPI.h>
 
-/*Pins*/
 #define pin_temp 2
 #define pin_moist //must be analog
 #define pin_light_sensor //must be analog
@@ -24,7 +24,6 @@ Needs Fixing:
 #define pin_relay //must be digital
 #define pin_servo //must be PWM
 
-/*Variables*/
 const int steps = 2038; // depends on the stepper motor
 const float rot_speed = 9; // optimized speed that I found
 const int min_moist; // must be between 0-100 (%)
@@ -33,13 +32,14 @@ const int min_temp; // in Celsius
 float X; // Counter of hours and minutes (decimal based, `13h30` is `13.5`)
 char hatch_state[]; // hatch state
 
-/*Objects*/
 File myFile; // SD card reader
+// Temp and Humi
 OneWire oneWire(pin_temp);
-DallasTemperature term(&oneWire); // lib que faz a medição de temp e humidade sem precisar de códico complexo
-Servo hatch; //pinos do stepper
-Time t; // para trabalhar com DS3231
-DS3231 rtc(SDA, SCL); // inicia o DS3231
+DallasTemperature term(&oneWire);
+Servo hatch;    // Stepper
+// RTC
+Time t;
+DS3231 rtc(SDA, SCL);
 
 void moist() {
 
