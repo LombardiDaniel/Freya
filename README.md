@@ -3,6 +3,11 @@
 [![Contributors](https://img.shields.io/github/contributors/LombardiDaniel/Freya.svg?style=flat-square)](https://github.com/LombardiDaniel/Freya/graphs/contributors)
 [![LinkedIn](https://camo.githubusercontent.com/c456ce1e22c379a6ff198bbb3a2d96f24fc94408/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d626c61636b2e7376673f7374796c653d666c61742d737175617265266c6f676f3d6c696e6b6564696e26636f6c6f72423d353535)](https://www.linkedin.com/in/daniel-lombardi-95b372147/)
 
+## COVID-19 ANNOUNCMENT:
+
+I plan to make some changes to `Freya`, the data-logging will be changed, and a web-app developed
+to help manage it, also, I am currently in the state of re-building the garden and will update as possible. The construction of the garden will be documented as well, along with a [instructables](https://www.instructables.com) tutorial in how everything was built. Things should start updating in july.
+
 # Freya
 
 <br />
@@ -27,10 +32,9 @@
 
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Running the tests](#running-the-tests)
-  * [Break down into end to end tests](#break-down-into-end-to-end-tests)
+    * [Prerequisites](#prerequisites)
+    * [Installation](#installation)
+    * [Running the tests](#running-the-tests)
 * [Deployment](#deployment)
 * [Built With](#built-with)
 * [Versioning](#versioning)
@@ -52,13 +56,7 @@ On one of my designs, the servo motor used to open/close the hatch is stuck to t
 
 ### Prerequisites
 
-All libraries I used are open-source.
-```C++
-<DallasTemperature.h>
-<DS3231.h>
-<OneWire.h>
-```
-They can be found at:
+All libraries I used are open-source and can be found at:
 
 * [DallasTemperature.h](https://github.com/milesburton/Arduino-Temperature-Control-Library)
 * [DS3231.h](http://www.rinkydinkelectronics.com/library.php?id=73)
@@ -74,13 +72,7 @@ The repository can be cloned via:
 git clone https://github.com/LombardiDaniel/Freya.git
 ```
 
-After that, just open the code on the [Arduino IDE](https://www.arduino.cc/en/main/software), updload and make sure the pins are correctly connected.
-
-## Running the tests
-
-There are no tests needed for Freya to work.
-
-Freya does not need any other softwares. Yet, it is recommended (as for data analysis) that you have some sort of spreadsheet software, such as Apple Numbers or Microsoft Excel, in order to organize graphs and files. It logs 4 data points every 10 minutes.
+After that, just open the code on the [Arduino IDE](https://www.arduino.cc/en/main/software), compile and upload it, making sure that the pins are correctly connected.
 
 The exported files to the SD card will be named as:
 
@@ -95,16 +87,19 @@ and will have the following organization:
 
 However, if you are not using the exact same sensors as me, you should make sure that the readings are still correct. Keep in mind that the 'LIGHT' data point is, as of now, just a value, that isn't in any specific unit measure.
 
-### Break down into end to end tests
+### Running the tests
+
+#### If you decide to use a hatch mechanism:
 
 You must be careful as to how the hatch system is built, as most servos can only rotate 180º, that must be taken into consideration, the 'extreme' rotation values (0 and 180) must be aligned to the CLOSED and OPEN position, respectively.
 When you run the program, however, the current position does not matter, as it will be set to the open position on system startup (setup phase).
 As in lines 63 to 67:
 
 ```C++
-for (int pos = 0; pos <= 180; pos++) {
-  hatch.write(pos);
-  delay(50);
+for (int pos = 0; pos <= 180; pos++)
+{
+    hatch.write(pos);
+    delay(50);
 }
 hatch_state = "open";
 ```
@@ -135,6 +130,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-* [language-arduino](https://atom.io/packages/language-arduino)
-* [arduino-upload](https://atom.io/packages/arduino-upload)
+* [Atom](https://atom.io) <3
 * Hat tip to anyone whose code was used
