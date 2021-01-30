@@ -32,16 +32,100 @@ const int min_temp; // in Celsius
 float X; // Counter of hours and minutes (decimal based, `13h30` is `13.5`)
 char hatch_state[]; // hatch state
 
-File myFile; // SD card reader
-// Temp and Humi
+
+File myFile;
 OneWire oneWire(pin_temp);
 DallasTemperature term(&oneWire);
-Servo hatch;    // Stepper
-// RTC
+Servo hatch;
 Time t;
 DS3231 rtc(SDA, SCL);
 
-void moist() {
+
+float moist();
+float temp();
+float lux();
+void water_start();
+void water_stop();
+void luz_start();
+void luz_stop();
+void log_data();
+void new_day();
+void hatch_open();
+void hatch_close();
+
+
+void setup() {
+
+    pinMode(pin_temp, INPUT);
+    pinMode(pin_moist, INPUT);
+    pinMode(pin_light_sensor, INPUT);
+    pinMode(pin_hose, OUTPUT);
+    pinMode(pin_CS, OUTPUT);
+    pinMode(pin_reset, OUTPUT_PULLUP)
+
+    hatch.attach(pin_servo);
+
+    SD.begin();
+    rtc.begin();
+    term.begin();
+
+    for (int pos = 0; pos <= 180; pos++) {
+        hatch.write(pos);
+        delay(50);
+    }
+    hatch_state = "open";
+
+    logged_state = false;
+
+    new_day();
+
+}
+
+void loop() {
+
+    t = rtc.getTime();
+    X = t.hour + (t.min)*100/60;
+
+    if (X == 0.0) {
+        new_day();
+    }
+
+
+    /*precisa fazer um sistema em que water_start() dependa de moist()
+    ai muda o tempo que a agua fica ligada (+ ou - tempo)*/
+    if (X == 6.0 && moist() <= min_moist) //por 10 min só (?) ou depende da mosit
+        water_start();
+    else if (X >= 6.166 || moist > max_moist)
+        water_stop();
+
+
+    if (t.min == 0) { //troca de hora
+
+        long ideal_light = sin((X-6)*3.1416/12); //converter p lux e achar valor de % (no momento é 0.6)
+
+        if ((temp() <= min_temp) && (lux() < ideal_light * 0.6)
+            hatch_close();
+        else
+            hatch_open();
+
+    }
+
+    if (hatch_state == "closed")
+        luz_start();
+    else
+        luz_stop();
+
+
+    // Um log a cada 10 minutos
+    if ((t.min)%10 == 0 && logged_state == false)
+        log_data();
+    else if ((t.min)%10 != 0 && logged_state == true)
+        logged_state == false;
+
+
+}
+
+float moist() {
 
     float moist, humidity;
 
@@ -52,11 +136,11 @@ void moist() {
 
     moist = 57.7638 * pow(2.73, 0.0068055 * humidity);
 
-    if (moist > 100) {
+    if (moist > 100)
         moist = 100;
-    } else if (moist < 0) {
+    else if (moist < 0)
         moist = 0;
-    }
+
 
     return moist;
 }
@@ -70,7 +154,7 @@ float temp() {
 
 }
 
-long lux() { //falta converter a unidade (fazer % da maior do dia)
+float lux() {
 
     long luz;
 
@@ -107,27 +191,16 @@ void luz_start() {
 }
 
 void luz_stop() {
-
     digitalWrite(pin_relay, LOW)
-
 }
 
 void log_data() {
 
     t = rtc.getTime
-    myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
+    myFile = SD.open("freya_data_" + rtc.getDateStr() + ".txt")
 
     if (myFile) {
-        myFile.print(X);
-        myFile.print(",HATCH: ");
-        myFile.print(hatch_state);
-        myFile.print(",");
-        myFile.print(lux());
-        myFile.print(",");
-        myFile.print(temp());
-        myFile.print(",");
-        myFile.println(moist());
-        myFile.print(",");
+        myFile.print("%.2f,%s,%.2f,%.2f,%.2f\n", X, hatch_state, lux(), temp(), moist());
         myFile.close();
     }
 
@@ -140,11 +213,11 @@ void new_day() {
     t = rtc.getTime();
 
     if (SD.begin()) {
-        myFile = SD.open("Freya_data_" + rtc.getDateStr() + ".txt")
+        myFile = SD.open("freya_data_" + rtc.getDateStr() + ".txt")
         if (myFile) {
-        myFile.println("");
-        myFile.println("TIME[H.M(decimal)],LIGHT[%],SOIL_TEMPERATURE[ºC],SOIL_MOISTURE[%]");
-        myFile.close();
+            myFile.println("");
+            myFile.println("TIME[H.M(decimal)],LIGHT[%],SOIL_TEMPERATURE[ºC],SOIL_MOISTURE[%]");
+            myFile.close();
         }
     }
 
@@ -167,74 +240,5 @@ void hatch_close() {
         delay(50);
     }
     hatch_state = "closed";
-
-}
-
-void setup() {
-
-    pinMode(pin_temp, INPUT);
-    pinMode(pin_moist, INPUT);
-    pinMode(pin_light_sensor, INPUT);
-    pinMode(pin_hose, OUTPUT);
-    pinMode(pin_CS, OUTPUT);
-    pinMode(pin_reset, OUTPUT_PULLUP)
-
-    hatch.attach(pin_servo);
-
-    SD.begin();
-    rtc.begin();
-    term.begin();
-
-    for (int pos = 0; pos <= 180; pos++) {
-    hatch.write(pos);
-    delay(50);
-    }
-    hatch_state = "open";
-
-    logged_state = false;
-
-    new_day();
-
-}
-
-void loop() {
-
-    t = rtc.getTime();
-    X = t.hour + (t.min)*100/60;
-
-    if (X == 0.0) {
-        new_day();
-    }
-
-
-    /*precisa fazer um sistema em que water_start() dependa de moist()
-    ai muda o tempo que a agua fica ligada (+ ou - tempo)*/
-    if (X == 6.0 && moist() <= min_moist) { //por 10 min só (?) ou depende da mosit
-        water_start();
-    } else if (X >= 6.166 || moist > max_moist) {
-        water_stop();
-    }
-
-    if (t.min == 0) { //troca de hora
-        long ideal_light = sin((X-6)*3.1416/12); //converter p lux e achar valor de % (no momento é 0.6)
-        if ( (temp() <= min_temp) && (lux() < ideal_light * 0.6) {
-            hatch_close();
-        } else {
-            hatch_open();
-        }
-    }
-
-    if (hatch_state == "closed") {
-        luz_start();
-    } else {
-        luz_stop();
-    }
-
-    // Um log a cada 10 minutos
-    if ((t.min)%10 == 0 && logged_state == false) {
-        log_data();
-    } else if ((t.min)%10 != 0 && logged_state == true) {
-        logged_state == false;
-    }
 
 }
